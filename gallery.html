@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
+  <title>Gallery - ILLUMINITS NIT Silchar</title>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <a href="index.html" class="text-2xl font-bold text-indigo-700">ILLUMINITS</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="clubs.html" class="nav-link">Clubs</a>
+                <a href="team.html" class="nav-link">Team</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-indigo-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden py-4">
+            <a href="index.html" class="block py-2 text-indigo-700">Home</a>
+            <a href="clubs.html" class="block py-2 text-indigo-700">Clubs</a>
+            <a href="team.html" class="block py-2 text-indigo-700">Team</a>
+            <a href="gallery.html" class="block py-2 text-indigo-700">Gallery</a>
+            <a href="contact.html" class="block py-2 text-indigo-700">Contact</a>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="scripts/main.js"></script>
+</nav>
+
+<!-- intro for gallery -->
+<section class="hero">
+  <div class="container mx-auto px-4 py-16">
+      <div class="text-center max-w-3xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Gallery</h1>
+          <p class="text-xl text-gray-600 mb-8">Our core memories </p>
+          <a href="#about" class="btn-primary">Explore More</a>
+      </div>
+  </div>
+</section>
+
+<section class="py-16 bg-gray-100">
+  <!-- First Gallery of events -->
+  <div id="events-gallery" class="max-w-[90rem] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 px-6">
+
+    <!-- Event 1 -->
+    <div onclick="showEventPhotos('LPL')" class="bg-white p-6 rounded-lg shadow-md text-center w-full h-[350px] flex flex-col justify-between border-l-4 border-l-indigo-600 cursor-pointer hover:shadow-xl transition-all duration-300">
+      <h2 class="text-xl font-semibold mb-4">LPL</h2>
+      <div class="w-full h-60 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+        <img src="/images/gallery/kwerbxhmitdy7wabo7v4.jpg" alt="LPL" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Event 2 -->
+    <div onclick="showEventPhotos('IMLD')" class="bg-white p-6 rounded-lg shadow-md text-center w-full h-[350px] flex flex-col justify-between border-l-4 border-l-indigo-600 cursor-pointer hover:shadow-xl transition-all duration-300">
+      <h2 class="text-xl font-semibold mb-4">IMLD</h2>
+      <div class="w-full h-60 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+        <img src="/images/gallery/t9izsstl9rv9sinbmav3.jpg" alt="IMLD" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Event 3 -->
+    <div onclick="showEventPhotos('Deprador & Kaladarshan')" class="bg-white p-6 rounded-lg shadow-md text-center w-full h-[350px] flex flex-col justify-between border-l-4 border-l-indigo-600 cursor-pointer hover:shadow-xl transition-all duration-300">
+      <h2 class="text-xl font-semibold mb-4">Deprador & Kaladarshan</h2>
+      <div class="w-full h-60 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+        <img src="/images/gallery/j6aw3wtxe5ohkvakwvau.jpg" alt="Deprador & Kaladarshan" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Second Gallery of events with gap above -->
+  <div class="max-w-[90rem] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 px-6 mt-16">
+
+    <!-- Event 1 -->
+    <div onclick="showEventPhotos('Manthan')"  class="bg-white p-6 rounded-lg shadow-md text-center w-full h-[350px] flex flex-col justify-between border-l-4 border-l-indigo-600">
+      <h2 class="text-xl font-semibold mb-4">Manthan</h2>
+      <div class="w-full h-60 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+        <img src="/images/gallery/ewlslovqykchzxq4pf62.jpg" alt="Manthan" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Event 2 -->
+    <div onclick="showEventPhotos('Farewell')" class="bg-white p-6 rounded-lg shadow-md text-center w-full h-[350px] flex flex-col justify-between border-l-4 border-l-indigo-600">
+      <h2 class="text-xl font-semibold mb-4">Farewell</h2>
+      <div class="w-full h-60 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+        <img src="/images/gallery/svfmjvoqpdrvpk4o3lkl.jpg" alt="Farewell" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Event 3 -->
+    <div onclick="showEventPhotos('*Coming soon*')" class="bg-white p-6 rounded-lg shadow-md text-center w-full h-[350px] flex flex-col justify-between border-l-4 border-l-indigo-600">
+      <h2 class="text-xl font-semibold mb-4">Other Events</h2>
+      <div class="w-full h-60 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform">
+        <img src="/images/gallery/q2xryfqjiyws8p6csnwy.jpg" alt="Other Events" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Event Photos Container -->
+  <div id="event-photos" class="max-w-[90rem] mx-auto mt-12 px-6 hidden">
+    <!-- Photos + title will be injected here by JS -->
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- footer -->
+<footer class="bg-gray-800 text-white py-12">
+  <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-8">
+          <div>
+              <h3 class="text-xl font-semibold mb-4">ILLUMINITS</h3>
+              <p class="text-gray-400">Literary, Publication and Fine Arts Society of NIT Silchar</p>
+          </div>
+          <div>
+              <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+              <p class="text-gray-400 mb-2">NIT Silchar, Silchar</p>
+              <p class="text-gray-400 mb-2">Assam, India-788010</p>
+              <p class="text-gray-400 mb-2">illuminits@nits.ac.in</p>
+              <p class="text-gray-400">9845275678</p>
+          </div>
+          <div>
+              <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul>
+                  <li class="mb-2"><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                  <li class="mb-2"><a href="clubs.html" class="text-gray-400 hover:text-white">Clubs</a></li>
+                  <li class="mb-2"><a href="team.html" class="text-gray-400 hover:text-white">Team</a></li>
+                  <li class="mb-2"><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                  <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+              <div class="flex space-x-4">
+                  <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f text-lg"></i></a>
+                  <a href="https://www.instagram.com/illuminits/?" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-lg"></i></a>
+                  <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-lg"></i></a>
+                  <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+              </div>
+          </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2023 ILLUMINITS. All rights reserved.</p>
+      </div>
+  </div>
+</footer>
+
+  <script src="gallery.js"></script>
+
+</body>
+</html>

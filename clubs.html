@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubs - ILLUMINITS NIT Silchar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+        .club-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #4f46e5;
+        }
+        .club-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #4f46e5;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4f46e5;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .club-hero {
+            background-size: cover;
+            background-position: center;
+        }
+        .club-detail {
+            display: none;
+        }
+        .club-detail.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+   @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+        .club-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 16px;
+
+        }
+      .hero {
+  width: 100%;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  color: #374151;
+  margin: 0;
+}
+
+
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="text-2xl font-bold text-indigo-700">ILLUMINITS</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="clubs.html" class="nav-link text-indigo-700 font-semibold">Clubs</a>
+                    <a href="team.html" class="nav-link">Team</a>
+                    <a href="gallery.html" class="nav-link">Gallery</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-indigo-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden py-4 border-t border-gray-200">
+                <a href="index.html" class="block py-2 text-gray-700">Home</a>
+                <a href="clubs.html" class="block py-2 text-indigo-700 font-semibold">Clubs</a>
+                <a href="team.html" class="block py-2 text-gray-700">Team</a>
+                <a href="gallery.html" class="block py-2 text-gray-700">Gallery</a>
+                <a href="contact.html" class="block py-2 text-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+
+     <section class="hero py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-gray-800 mb-6">Our Clubs</h1>
+      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+        Explore the diverse literary and arts clubs under ILLUMINITS that celebrate creativity, culture, and expression.
+      </p>
+    </div>
+  </div>
+</section>
+    <!-- Clubs Overview Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+           
+
+
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- English Literature Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="english">
+                    <div class="club-icon bg-indigo-100">
+                        <i class="fas fa-book text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">English Literature Club</h3>
+                    <p class="text-gray-600 mb-4">Immerse yourself in literary discussions, explore classic and contemporary works, and foster a love for literature.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="english">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Hindi Sahitya Samiti -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="hindi">
+                    <div class="club-icon bg-orange-100">
+                        <i class="fas fa-pen-fancy text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Hindi Sahitya Samiti</h3>
+                    <p class="text-gray-600 mb-4">Fostering appreciation for Hindi literature and promoting linguistic activities, contributing to Indian culture.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="hindi">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Marwaadi Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="marwaadi">
+                    <div class="club-icon bg-amber-100">
+                        <i class="fas fa-archway text-amber-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Marwaadi Club</h3>
+                    <p class="text-gray-600 mb-4">A vibrant community celebrating rich Marwaadi culture, fostering connections, and organizing cultural events.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="marwaadi">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Assamese Literature Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="assamese">
+                    <div class="club-icon bg-green-100">
+                        <i class="fas fa-feather text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Assamese Literature Club</h3>
+                    <p class="text-gray-600 mb-4">Celebrates the rich cultural tapestry of Assam through passionate exploration of regional literature.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="assamese">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Bengali Literature Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="bengali">
+                    <div class="club-icon bg-red-100">
+                        <i class="fas fa-feather-alt text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Bengali Literature Club</h3>
+                    <p class="text-gray-600 mb-4">Fosters a vibrant community passionate about Bengali literature and the rich literary heritage of Bengal.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="bengali">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Telugu and Tamil Literature Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="tamil-telugu">
+                    <div class="club-icon bg-blue-100">
+                        <i class="fas fa-scroll text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Telugu & Tamil Club</h3>
+                    <p class="text-gray-600 mb-4">Celebrating the rich literary traditions of Telugu and Tamil languages through cultural events and activities.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="tamil-telugu">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Digital Arts Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="digital-arts">
+                    <div class="club-icon bg-purple-100">
+                        <i class="fas fa-laptop-code text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Digital Arts Club</h3>
+                    <p class="text-gray-600 mb-4">A vibrant community for creative minds passionate about digital arts, exploring diverse techniques and collaboration.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="digital-arts">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Fine Arts Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="fine-arts">
+                    <div class="club-icon bg-pink-100">
+                        <i class="fas fa-palette text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Fine Arts Club</h3>
+                    <p class="text-gray-600 mb-4">Fosters creativity and expression, providing a space for artists to collaborate and showcase their talents.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="fine-arts">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Journalism Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="journalism">
+                    <div class="club-icon bg-teal-100">
+                        <i class="fas fa-newspaper text-teal-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Journalism Club</h3>
+                    <p class="text-gray-600 mb-4">Dynamic exploration of storytelling, news analysis, and media literacy in a collaborative environment.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="journalism">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Publication Club -->
+                <div class="club-card bg-white p-6 rounded-lg shadow-md" data-club="publication">
+                    <div class="club-icon bg-cyan-100">
+                        <i class="fas fa-book-open text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Publication Club</h3>
+                    <p class="text-gray-600 mb-4">A vibrant community fostering intellectual landscape through diverse literature and insightful discussions.</p>
+                    <button class="text-indigo-600 font-medium flex items-center club-detail-btn" data-club="publication">
+                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Club Details Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <!-- English Literature Club Detail -->
+            <div id="english-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">English Literature Club</h2>
+                        <p class="text-xl">Exploring the universe of words through classic and contemporary literature</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">With stimulating conversations, book reviews, and creative writing exercises, the English Literature Club cultivates a passion for reading. Dive into the depths of both classic and modern literature as you and other fellow enthusiasts explore the universe of words.</p>
+                            <p class="text-gray-700 mb-6">We aspire to unravel the beauty of language and share the magic of literature! As Oscar Wilde once said, "The only way to do great work is to love what you do." And here, in the English Literature Club, we believe in fostering that love for literature.</p>
+                            <p class="text-gray-700">Our club stands as a beacon for literary enthusiasts, providing a platform to celebrate the written word. Through engaging events, we bring literature to life, fostering an environment that values the importance of reading and storytelling.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="English Literature Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Activities</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Book discussions and reviews</li>
+                                    <li>Creative writing workshops</li>
+                                    <li>Poetry recitation sessions</li>
+                                    <li>Literary debates and discussions</li>
+                                    <li>Author interaction sessions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Featured Events</h3>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-indigo-700 mb-2">USOC</h4>
+                                <p class="text-gray-700">User Submitted Original Content - Platform for sharing original poetry and writings</p>
+                            </div>
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-indigo-700 mb-2">Book Recommendations</h4>
+                                <p class="text-gray-700">Members share their favorite reads and explore new literary worlds together</p>
+                            </div>
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-indigo-700 mb-2">Word of the Week</h4>
+                                <p class="text-gray-700">Expanding vocabulary through weekly featured words and their usage</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hindi Sahitya Samiti Detail -->
+            <div id="hindi-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1580477667995-2b94f01c9516?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Hindi Sahitya Samiti</h2>
+                        <p class="text-xl">Celebrating the richness of Hindi literature and linguistic heritage</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">HSS takes us on a boat, underneath lies water of great Hindi literature, surrounded by mountains of poems, dohas of Mirabai, Kabir and Tulsidas, and the oar is our creativity and common love for Hindi literature and art.</p>
+                            <p class="text-gray-700">Here, at HSS, pages whisper secrets of old and new, weaving tales that transcend time and place, nurturing hearts and sharpening minds. The club serves as a platform where literature enthusiasts can gather, share their ideas, and embark on new literary explorations.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Hindi Sahitya Samiti" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Activities</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Hindi poetry recitations</li>
+                                    <li>Literary discussions on Hindi works</li>
+                                    <li>Writing workshops in Hindi</li>
+                                    <li>Cultural events celebrating Hindi literature</li>
+                                    <li>Interactive sessions with Hindi authors</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Philosophy</h3>
+                        <div class="bg-orange-50 p-6 rounded-lg">
+                            <p class="text-orange-800 italic text-center">"Find your tribe at the Hindi Sahitya Club, where like-minded souls converge to celebrate the beauty and depth of Hindi literature."</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marwaadi Club Detail -->
+            <div id="marwaadi-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Marwaadi Club</h2>
+                        <p class="text-xl">Celebrating the rich cultural heritage and literature of the Marwaadi community</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">Marwaadi literature is a rich mosaic influenced by folklore, legends and historical events that knit stories of valor and romance. The Marwaadi club, under the purview of Illuminits, thrives to bring out the charm of the rich and vibrant Marwaadi culture and literature.</p>
+                            <p class="text-gray-700 mb-6">Marwaadi literature often contains social commentary, critiquing societal norms and upholding for reform. Much of its literature is inspired by oral traditions, where folk songs, narratives and stories are passed down verbally, which are critical in understanding its linguistic heritage.</p>
+                            <p class="text-gray-700">The Marwaadi Club is one of the most esteemed clubs of NIT Silchar dedicated to the appreciation of Marwaadi literature and culture. The club actively tells the tales, folklores and focuses on showcasing and preserving the glorious culture and history of the Marwaadi community.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Marwaadi Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Activities</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Cultural events celebrating Marwaadi heritage</li>
+                                    <li>Folklore storytelling sessions</li>
+                                    <li>Business and finance workshops</li>
+                                    <li>Traditional music and dance performances</li>
+                                    <li>Literary discussions on Marwaadi works</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                        <p class="text-gray-700">The club contributes to capture the true essence of Rajasthan's varied heritage and to illuminate its works among the college community. The club owing to its latest inclusion can conduct various literary events, workshops, quizzes and cultural celebrations which will not only popularize the Marwaadi culture and community, but will also help preserve its cultural identity.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assamese Literature Club Detail -->
+            <div id="assamese-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Assamese Literature Club</h2>
+                        <p class="text-xl">Preserving and promoting the rich literary heritage of Assam</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">The Assamese Literature Club serves as a haven for enthusiasts, fostering a deep appreciation for Assamese literary treasures. It provides a platform for lively discussions, book readings, and cultural exchanges, nurturing a community passionate about the written word.</p>
+                            <p class="text-gray-700 mb-6">Through events and activities, the club strives to preserve and promote the rich heritage of Assamese literature, creating a vibrant space where members can explore, engage, and celebrate the diverse literary expressions of Assam.</p>
+                            <p class="text-gray-700">The Assamese Literature Club at our college stands at the cusp of a promising future, poised to become a beacon of cultural enrichment and literary excellence. With increasing interest among students in exploring regional literature, the club has the potential to cultivate a deep appreciation for Assamese literary heritage while also fostering contemporary voices.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Assamese Literature Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Future Initiatives</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Collaborative projects with renowned Assamese authors</li>
+                                    <li>Translation workshops</li>
+                                    <li>Digital archives to preserve rare literary treasures</li>
+                                    <li>Literary festivals and poetry slams</li>
+                                    <li>Interactive sessions with writers and poets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
+                        <p class="text-gray-700">By organizing literary festivals, poetry slams, and interactive sessions, the club can provide a vibrant platform for budding writers and poets. Leveraging social media and digital platforms will allow the club to reach a global audience, promoting Assamese literature beyond geographical boundaries. With dedicated efforts and innovative programs, the Assamese Literature Club is set to inspire and nurture a new generation of literary enthusiasts, ensuring the rich legacy of Assamese literature thrives in the modern era.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bengali Literature Club Detail -->
+            <div id="bengali-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Bengali Literature Club</h2>
+                        <p class="text-xl">Celebrating the rich literary heritage of Bengal</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">"If we are to preserve culture we must continue to create it" — Johan Huizinga. And, when it comes to Bengali culture, its literature, and social commentary holds a certain power second to none. Hence, this became the very motto of the Bengali Literature Club.</p>
+                            <p class="text-gray-700 mb-6">The club aims to promote and engage enthusiasts in the vast collection of media that can be explored. It aims to pay their respect to the writers, poets, journalists and artists who have enriched the Bengali culture with their contributions. To preserve the culture, and to encourage young readers being the other primary goals.</p>
+                            <p class="text-gray-700">Bengali Literature, with its vast collection of poetry, prose and other forms of writing has mostly been underrated, even in its translated form, for that to be properly promoted and for it to be appreciated, the Bengali Literature club is all about exploring the vast ocean of media that exists.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bengali Literature Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">What We Explore</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Writings of Rabindranath Thakur</li>
+                                    <li>Poetry of Kabi Nazrul Islam</li>
+                                    <li>Stories created by Satyajit Ray</li>
+                                    <li>Contemporary Bengali literature</li>
+                                    <li>Social commentary in Bengali works</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">International Mother Language Day</h3>
+                        <p class="text-gray-700 mb-4">"Language is the blood of the soul into which thoughts run and out of which they grow" — Oliver Wendell Holmes Sr. A vital aspect of cultural identity, a mother language is not just a tool of communication but a profound expression of heritage, history and human connection.</p>
+                        <p class="text-gray-700">Observed on 21st February every year, International Mother Language Day commemorates the significance of the martyrs of the Language Movement in Bangladesh in 1952. The day celebrates linguistic diversity and promotes its preservation and protection. A mother language is a thread that connects us and breaks down social barriers. Here's to the languages that shape our thoughts, emotions and identities. Illuminits wishes you a hearty International Mother Language Day. Let us cherish and protect the languages that make us who we are স্বাগতম! (Welcome!)</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Telugu and Tamil Literature Club Detail -->
+            <div id="tamil-telugu-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Telugu and Tamil Literature Club</h2>
+                        <p class="text-xl">Celebrating the rich literary traditions of South India</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">The Tamil and Telugu Literature Club serves as a vibrant platform celebrating the rich literary traditions of Tamil and Telugu-speaking regions. Engaging enthusiasts in both classical and contemporary works, the club fosters discussions, readings, and cultural exchanges.</p>
+                            <p class="text-gray-700 mb-6">Members delve into the poetic beauty of Tamil Sangam literature and the rich storytelling heritage of Telugu literature. Through this literary alliance, the club becomes a dynamic space for appreciating, preserving, and sharing the diverse narratives and linguistic treasures of Tamil and Telugu literature.</p>
+                            <p class="text-gray-700">The Telugu and Tamil Literature Club, an integral part of Illuminits: Literary, Publication, and Fine Arts Society of NITS, stands as a vibrant hub for those immersed in the richness of language and culture. Devotees that admire Annamayya keerthanas to modern age Literary Saint renowned by Shri Shri, Telugu and Tamil Literature paves way for exploring all with creativity.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Telugu and Tamil Literature Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Activities</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Poetry recitations in Tamil and Telugu</li>
+                                    <li>Literary discussions on classical works</li>
+                                    <li>Cultural exchange events</li>
+                                    <li>Workshops on traditional storytelling</li>
+                                    <li>Interactive sessions with regional authors</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Invitation</h3>
+                        <p class="text-gray-700">The Telugu and Tamil Literature Club proudly organizes a variety of events dedicated to the essence of language and storytelling, seizing every opportunity to showcase the profound beauty of our linguistic heritage. We extend a warm invitation to all students who harbor a love for the written word to join us on this journey of exploration, experimentation, and connection with the rich and transformative worlds of Telugu and Tamil literature. Together, let's weave narratives that reflect the diversity, beauty, and boundless imagination within each of us.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Arts Club Detail -->
+            <div id="digital-arts-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Digital Arts Club</h2>
+                        <p class="text-xl">Exploring the intersection of art and technology</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">In an era dominated by technological advancements, the art world has witnessed a transformative shift towards digital expression. Among the pioneers of this revolution are Digital Art Clubs, dynamic communities that provide a platform for artists to explore, create, and showcase their work in the digital realm.</p>
+                            <p class="text-gray-700 mb-6">This burgeoning movement has not only democratized artistic expression but has also fostered a vibrant community of like-minded individuals passionate about the intersection of art and technology. Digital Art Clubs have their roots in the increasing accessibility of digital tools and platforms for artistic creation.</p>
+                            <p class="text-gray-700">These clubs bring together artists, illustrators, animators, and enthusiasts who share a common interest in harnessing the power of technology to push the boundaries of artistic expression. The rise of graphic tablets, digital painting software, and immersive virtual reality experiences has paved the way for a new era of creativity.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Digital Arts Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">What We Offer</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Workshops on digital painting software</li>
+                                    <li>Virtual reality art experiences</li>
+                                    <li>Collaborative digital art projects</li>
+                                    <li>Exhibition opportunities for digital works</li>
+                                    <li>Networking with digital artists</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Community</h3>
+                        <p class="text-gray-700">One of the defining features of Digital Art Clubs is the incredible diversity of artistic styles and techniques that members employ. Digital Art Clubs leverage the interconnected nature of the internet to facilitate collaboration and networking among artists, regardless of geographical boundaries. Through online platforms, members can share their work, provide constructive feedback, and engage in collaborative projects.</p>
+                        <p class="text-gray-700 mt-4">This sense of virtual community fosters a supportive environment where artists can grow, learn, and inspire one another. Digital Art Clubs often prioritize education and skill development. Members benefit from workshops, tutorials, and mentorship programs that help them hone their digital artistry skills.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fine Arts Club Detail -->
+            <div id="fine-arts-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Fine Arts Club</h2>
+                        <p class="text-xl">Fostering creativity and artistic expression</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">Fine Arts Clubs trace their origins to a shared love for artistic endeavors and the desire to create a supportive community for individuals seeking to explore and enhance their artistic talents. Whether based in educational institutions, community centers, or online platforms, these clubs provide a space for individuals to engage in various forms of visual arts, from traditional painting to contemporary digital art.</p>
+                            <p class="text-gray-700 mb-6">Central to the mission of Fine Arts Clubs is the facilitation of artistic growth and skill development. Through workshops, live demonstrations, and collaborative projects, members have the opportunity to learn diverse techniques, experiment with different mediums, and refine their artistic styles.</p>
+                            <p class="text-gray-700">The collaborative spirit within these clubs often leads to a vibrant exchange of ideas, inspiring members to push their creative boundaries. Fine Arts Clubs embrace a wide spectrum of artistic forms, encompassing painting, drawing, sculpture, printmaking, photography, and more.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Fine Arts Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Features</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Workshops on various artistic techniques</li>
+                                    <li>Live demonstrations by experienced artists</li>
+                                    <li>Collaborative art projects</li>
+                                    <li>Gallery exhibitions and showcases</li>
+                                    <li>Community art initiatives</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Exhibition Opportunities</h3>
+                        <p class="text-gray-700">A hallmark of Fine Arts Clubs is the emphasis on providing opportunities for members to showcase their work. Whether through gallery exhibitions, online showcases, or public installations, these platforms serve as a springboard for artists to share their creations with a broader audience. The exposure gained from these opportunities not only boosts confidence but also encourages a sense of accomplishment and validation.</p>
+                        <p class="text-gray-700 mt-4">Fine Arts Clubs are more than creative spaces; they are communities that foster camaraderie among artists. Members share experiences, provide constructive feedback, and form connections that extend beyond the studio. Networking within these clubs can lead to collaborative projects, joint exhibitions, and a sense of belonging within the broader artistic community.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Journalism Club Detail -->
+            <div id="journalism-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Journalism Club</h2>
+                        <p class="text-xl">Exploring storytelling, news analysis, and media literacy</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">The Journalism Club has set its sights into a bright horizon with active efforts in delivering news on diverse topics and teaching and making the art of journalism accessible to all.</p>
+                            <p class="text-gray-700 mb-6">Since its inception, the club has taken many key initiatives by increasing the engagement and improving the readership participants through social media. The club has also taken very deliberate steps to report on diverse, informative topics.</p>
+                            <p class="text-gray-700">And through active teamwork and collaboration, the club has maintained a loyal readership and cemented itself as a well respected club of NIT Silchar. The club has also greatly enriched the students' lives by promoting creativity and free, constructive expression among students.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Journalism Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Initiatives</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>News reporting on diverse topics</li>
+                                    <li>Social media engagement strategies</li>
+                                    <li>Media literacy workshops</li>
+                                    <li>Interview techniques training</li>
+                                    <li>Collaborative journalism projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Future Vision</h3>
+                        <p class="text-gray-700">The club has one of the most promising future with its plans to digitise its platform for better outreach. The club has plans to integrate various emerging technologies in its working such as data journalism tools, interactive media etc.</p>
+                        <p class="text-gray-700 mt-4">With new recruits pouring in every year, the club are honing their skills and guiding them by providing internships and training programmes. Thus this club has the potential to soar greatest of heights and change the face of journalism for the better.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publication Club Detail -->
+            <div id="publication-club" class="club-detail">
+                <div class="club-hero text-white py-16 px-4 rounded-lg mb-8" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h2 class="text-4xl font-bold mb-4">Publication Club</h2>
+                        <p class="text-xl">A literary haven where words come alive</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">About Us</h3>
+                            <p class="text-gray-700 mb-6">The Publication Club is a literary haven where words come alive. Fostering a community of avid readers, it explores diverse genres and engages in thought-provoking discussions. From classic novels to contemporary gems, the club cultivates a shared love for literature.</p>
+                            <p class="text-gray-700 mb-6">Join us on a journey of discovery, as we celebrate the power of words and the joy of reading. Dive into the world of stories with the Publication Club. Uncover hidden literary gems, share insights, and cherish the collective passion for reading and storytelling.</p>
+                            <p class="text-gray-700">In the heart of intellectual exploration, the Publication Club thrives as a literary sanctuary. Committed to unraveling the tapestry of words, it embarks on a quest through diverse realms of literature. From timeless classics to contemporary marvels, each page turned fosters vibrant discussions.</p>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Publication Club" class="w-full h-64 object-cover rounded-lg">
+                            <div class="mt-6">
+                                <h4 class="text-xl font-semibold text-gray-800 mb-4">Club Activities</h4>
+                                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                                    <li>Book discussions and reviews</li>
+                                    <li>Author interaction sessions</li>
+                                    <li>Literary analysis workshops</li>
+                                    <li>Writing and publishing guidance</li>
+                                    <li>Reading challenges and marathons</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Essence</h3>
+                        <p class="text-gray-700">The club's essence lies in the shared excitement of discovery, where literary enthusiasts unite to dissect narratives, explore themes, and celebrate the written word. A collaborative journey unfolds, echoing the profound impact of literature on hearts and minds. Join this literary fellowship, where every book becomes a portal to new worlds, ideas, and the collective joy of literary exploration.</p>
+                        <p class="text-gray-700 mt-4">The Publication Club, a haven for literary enthusiasts, navigates the vast expanse of literature, from ancient sagas to modern tales. It's a dynamic space where readers converge to dissect plots, explore characters, and share the sheer delight of storytelling. With each meeting, the club illuminates the transformative power of words, creating an ever-evolving narrative mosaic.</p>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition back-to-clubs">
+                            Back to All Clubs
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">ILLUMINITS</h3>
+                    <p class="text-gray-400">Literary, Publication and Fine Arts Society of NIT Silchar</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <p class="text-gray-400 mb-2">NIT Silchar, Silchar</p>
+                    <p class="text-gray-400 mb-2">Assam, India-788010</p>
+                    <p class="text-gray-400 mb-2">illuminits@nits.ac.in</p>
+                    <p class="text-gray-400">9845275678</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li class="mb-2"><a href="clubs.html" class="text-gray-400 hover:text-white">Clubs</a></li>
+                        <li class="mb-2"><a href="team.html" class="text-gray-400 hover:text-white">Team</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 ILLUMINITS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // =======================
+    // Mobile menu toggle
+    // =======================
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // =======================
+    // Club detail view toggle
+    // =======================
+    const clubDetailButtons = document.querySelectorAll('.club-detail-btn');
+    const clubDetails = document.querySelectorAll('.club-detail');
+    const clubsOverview = document.querySelector('.bg-white');
+    const clubsDetailSection = document.querySelector('.bg-gray-100');
+    
+    clubDetailButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const clubId = this.getAttribute('data-club');
+            
+            // Hide all club details
+            clubDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Show the selected club detail
+            document.getElementById(`${clubId}-club`).classList.add('active');
+            
+            // Smooth scroll to detail section
+            clubsDetailSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+    
+    // Back to clubs overview
+    const backButtons = document.querySelectorAll('.back-to-clubs');
+    backButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Hide all club details
+            clubDetails.forEach(detail => {
+                detail.classList.remove('active');
+            });
+            
+            // Smooth scroll to overview section
+            clubsOverview.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // =======================
+    // Smooth scrolling for nav links
+    // =======================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.length > 1) {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // =======================
+    // Animation on scroll (fade-in)
+    // =======================
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+});
+</script>
+<script src="animations.js"></script>
+
+
+
+</body>
+</html>

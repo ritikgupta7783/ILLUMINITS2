@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - ILLUMINITS NIT Silchar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+        
+        .contact-hero {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            color: #374151;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-left: 4px solid #4f46e5;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #4f46e5;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4f46e5;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-divider {
+            height: 1px;
+            width: 80px;
+            background-color: #4f46e5;
+            margin: 0 auto 2rem;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .campus-highlight {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c73e6 100%);
+            color: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .location-pin {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .campus-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .campus-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .form-error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-success {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Custom marker for NIT Silchar */
+        .nit-marker {
+            background-color: #4f46e5;
+            border: 3px solid white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="text-2xl font-bold text-indigo-700">ILLUMINITS</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="clubs.html" class="nav-link">Clubs</a>
+                    <a href="team.html" class="nav-link">Team</a>
+                    <a href="gallery.html" class="nav-link">Gallery</a>
+                    <a href="contact.html" class="nav-link text-indigo-700 font-semibold">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-indigo-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden py-4 border-t border-gray-200">
+                <a href="index.html" class="block py-2 text-gray-700">Home</a>
+                <a href="clubs.html" class="block py-2 text-gray-700">Clubs</a>
+                <a href="team.html" class="block py-2 text-gray-700">Team</a>
+                <a href="gallery.html" class="block py-2 text-gray-700">Gallery</a>
+                <a href="contact.html" class="block py-2 text-indigo-700 font-semibold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Get In Touch</h1>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Reach out to ILLUMINITS at NIT Silchar. We're located in the heart of Assam's beautiful campus.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Highlight Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Our Campus</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4">
+                    National Institute of Technology Silchar is one of the 31 NITs in India and is located in the scenic Barak Valley region of Assam.
+                </p>
+            </div>
+            
+            <div class="campus-highlight p-8 mb-12">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">NIT Silchar Campus</h3>
+                        <p class="mb-4">Located in the picturesque settings of Silchar, our campus spans over 625 acres of lush greenery with state-of-the-art infrastructure.</p>
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-map-marker-alt mr-3 text-xl"></i>
+                            <span>NIT Silchar, Silchar, Assam, India - 788010</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-phone-alt mr-3 text-xl"></i>
+                            <span>+91-3842-224879</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe mr-3 text-xl"></i>
+                            <span>www.nits.ac.in</span>
+                        </div>
+                    </div>
+                    <div class="relative overflow-hidden rounded-lg">
+                        <img src="Image\NitSilchar.jpg" 
+                             alt="NIT Silchar Campus" 
+                             class="campus-image w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-indigo-900 bg-opacity-20 flex items-center justify-center">
+                            <div class="text-white text-center p-4">
+                                <div class="location-pin inline-block mb-2">
+                                    <i class="fas fa-map-pin text-3xl"></i>
+                                </div>
+                                <p class="font-semibold">NIT Silchar Campus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Academic Excellence</h3>
+                    <p class="text-gray-600">NIT Silchar is known for its high-quality technical education and research programs.</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-leaf text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Green Campus</h3>
+                    <p class="text-gray-600">Our 625-acre campus is nestled in lush greenery, providing an ideal environment for learning.</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Vibrant Community</h3>
+                    <p class="text-gray-600">Home to diverse student communities and numerous technical and cultural societies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Contact Information</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="contact-card text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Our Location</h3>
+                    <p class="text-gray-600">NIT Silchar, Silchar<br>Assam, India-788010</p>
+                </div>
+                
+                <div class="contact-card text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Email Us</h3>
+                    <p class="text-gray-600">illuminits@nits.ac.in</p>
+                </div>
+                
+                <div class="contact-card text-center">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone-alt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Call Us</h3>
+                    <p class="text-gray-600">+91 98452 75678</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
+                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xovkrwbg" method="POST">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Your Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Map & Additional Info -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Find Us</h2>
+                    <div class="map-container mb-8">
+                        <div id="map" style="height: 100%; width: 100%;"></div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">How to Reach NIT Silchar</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1 flex items-center">
+                                    <i class="fas fa-plane mr-2 text-indigo-600"></i> By Air
+                                </h4>
+                                <p class="text-gray-600 text-sm">The nearest airport is Silchar Airport (IXS), located about 22 km from the campus.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1 flex items-center">
+                                    <i class="fas fa-train mr-2 text-indigo-600"></i> By Train
+                                </h4>
+                                <p class="text-gray-600 text-sm">Silchar Railway Station (SCL) is well-connected to major cities and is about 10 km from campus.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700 mb-1 flex items-center">
+                                    <i class="fas fa-bus mr-2 text-indigo-600"></i> By Road
+                                </h4>
+                                <p class="text-gray-600 text-sm">Silchar is connected by NH37 and NH54. Regular bus services are available from Guwahati and other cities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Office Hours Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Office Hours</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li class="flex justify-between">
+                                <span>Monday - Friday:</span>
+                                <span>9:00 AM - 5:00 PM</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Saturday:</span>
+                                <span>10:00 AM - 2:00 PM</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>Sunday:</span>
+                                <span>Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Visit Our Campus</h3>
+                        <p class="text-gray-600 mb-4">We welcome visitors to our campus. Please contact us in advance to schedule your visit.</p>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-info-circle mr-2 text-indigo-600"></i>
+                            <span>Guided campus tours available on request</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Frequently Asked Questions</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">How can I join ILLUMINITS?</h3>
+                        <p class="text-gray-600">We conduct recruitment drives at the beginning of each academic year. Follow our social media channels and keep an eye on college announcements for recruitment details.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Do I need prior experience to join any club?</h3>
+                        <p class="text-gray-600">No prior experience is required for most clubs. We welcome enthusiasts who are passionate about literature, arts, and publications. We provide guidance and workshops to help you develop your skills.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Can I participate in events if I'm not a member?</h3>
+                        <p class="text-gray-600">Yes! Most of our events are open to all students of NIT Silchar. Some workshops or exclusive events might be for members only, but we'll always specify that in the event announcements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">ILLUMINITS</h3>
+                    <p class="text-gray-400">Literary, Publication and Fine Arts Society of NIT Silchar</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <p class="text-gray-400 mb-2">NIT Silchar, Silchar</p>
+                    <p class="text-gray-400 mb-2">Assam, India-788010</p>
+                    <p class="text-gray-400 mb-2">illuminits@nits.ac.in</p>
+                    <p class="text-gray-400">9845275678</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li class="mb-2"><a href="clubs.html" class="text-gray-400 hover:text-white">Clubs</a></li>
+                        <li class="mb-2"><a href="team.html" class="text-gray-400 hover:text-white">Team</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-gray-400 hover:text-white">Gallery</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 ILLUMINITS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // =======================
+            // Mobile menu toggle
+            // =======================
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // =======================
+            // Initialize Map
+            // =======================
+            // Coordinates for NIT Silchar
+            const nitSilcharCoords = [24.8346, 92.7787];
+            
+            // Initialize the map
+            const map = L.map('map').setView(nitSilcharCoords, 15);
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Create a custom icon for NIT Silchar
+            const nitIcon = L.divIcon({
+                className: 'nit-marker',
+                html: '<i class="fas fa-map-marker-alt text-white" style="font-size: 10px; margin-left: 5px; margin-top: 5px;"></i>',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+            
+            // Add marker for NIT Silchar
+            const marker = L.marker(nitSilcharCoords, {icon: nitIcon}).addTo(map);
+            
+            // Add popup with NIT Silchar information
+            marker.bindPopup(`
+                <div class="p-2">
+                    <h3 class="font-bold text-lg text-indigo-700">NIT Silchar</h3>
+                    <p class="text-gray-600">National Institute of Technology Silchar</p>
+                    <p class="text-sm text-gray-500 mt-1">Silchar, Assam, India - 788010</p>
+                    <div class="mt-2 flex space-x-2">
+                        <a href="https://www.nits.ac.in" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
+                            <i class="fas fa-globe mr-1"></i> Website
+                        </a>
+                    </div>
+                </div>
+            `).openPopup();
+            
+            // Add a circle to highlight the area
+            L.circle(nitSilcharCoords, {
+                color: '#4f46e5',
+                fillColor: '#4f46e5',
+                fillOpacity: 0.1,
+                radius: 500
+            }).addTo(map);
+
+            // =======================
+            // Contact Form Handling
+            // =======================
+            const contactForm = document.getElementById('contact-form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+                    
+                    // Simple validation
+                    if (!name || !email || !subject || !message) {
+                        showFormMessage('Please fill in all fields.', 'error');
+                        return;
+                    }
+                    
+                    if (!isValidEmail(email)) {
+                        showFormMessage('Please enter a valid email address.', 'error');
+                        return;
+                    }
+                    
+                    // In a real application, you would send the data to a server here
+                    // For this example, we'll just show a success message
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        showFormMessage('Thank you for your message! We will get back to you soon.', 'success');
+                        contactForm.reset();
+                    }, 1000);
+                });
+            }
+            
+            // =======================
+            // Email validation
+            // =======================
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // =======================
+            // Form message display
+            // =======================
+            function showFormMessage(message, type) {
+                // Remove any existing messages
+                const existingMessage = document.querySelector('.form-message');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+                
+                // Create new message element
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `form-message ${type === 'error' ? 'form-error' : 'form-success'} animate-fade-in`;
+                messageDiv.textContent = message;
+                
+                // Insert before the form
+                contactForm.parentNode.insertBefore(messageDiv, contactForm);
+                
+                // Auto remove after 5 seconds for success messages
+                if (type === 'success') {
+                    setTimeout(() => {
+                        messageDiv.remove();
+                    }, 5000);
+                }
+            }
+            
+            // =======================
+            // Smooth scrolling for nav links
+            // =======================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId.length > 1) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // =======================
+            // Animation on scroll (fade-in)
+            // =======================
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
